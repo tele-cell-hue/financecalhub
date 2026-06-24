@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinanceCalcHub - Free Financial Calculators</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f4f8fc;color:#333}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);padding:20px}
+nav{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+nav a{color:#fff;text-decoration:none;font-weight:bold}
+.hero{background:linear-gradient(135deg,#1565c0,#42a5f5);color:#fff;text-align:center;padding:80px 20px}
+.hero h1{font-size:2.4rem;margin-bottom:15px}
+.hero p{max-width:700px;margin:auto;margin-bottom:20px}
+.hero a{display:inline-block;padding:12px 24px;background:#fff;color:#1565c0;text-decoration:none;border-radius:30px;font-weight:bold}
+.section-title{text-align:center;margin:40px 0 20px;color:#0d47a1}
+.calculators{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:20px;max-width:1200px;margin:auto}
+.card{background:#fff;padding:20px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+.card h3{margin-bottom:15px;color:#1565c0}
+input{width:100%;padding:10px;margin:8px 0;border:1px solid #ddd;border-radius:8px}
+button{width:100%;padding:10px;background:#1565c0;color:#fff;border:none;border-radius:8px;cursor:pointer}
+.result{margin-top:10px;font-weight:bold;color:#0d47a1}
+.about{max-width:1000px;margin:40px auto;padding:25px;background:#fff;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.08)}
+footer{background:#0d47a1;color:#fff;text-align:center;padding:20px;margin-top:40px}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy-policy.html">Privacy Policy</a>
+</nav>
+</header>
+<section class="hero">
+<h1>FinanceCalcHub</h1>
+<p>Free financial calculators to help you make smarter money decisions.</p>
+<a href="#tools">Start Calculating</a>
+</section>
+<h2 class="section-title" id="tools">Financial Calculators</h2>
+<div class="calculators">
+<div class="card"><h3>Loan Calculator</h3><input id="loanAmount" type="number" placeholder="Loan Amount"><input id="loanRate" type="number" placeholder="Interest Rate (%)"><input id="loanYears" type="number" placeholder="Years"><button onclick="loanCalc()">Calculate</button><div id="loanResult" class="result"></div></div>
+<div class="card"><h3>Compound Interest</h3><input id="principal" type="number" placeholder="Initial Investment"><input id="rate" type="number" placeholder="Interest Rate (%)"><input id="years" type="number" placeholder="Years"><button onclick="compoundCalc()">Calculate</button><div id="compoundResult" class="result"></div></div>
+<div class="card"><h3>Savings Goal</h3><input id="goal" type="number" placeholder="Savings Goal"><input id="monthly" type="number" placeholder="Monthly Savings"><button onclick="savingsCalc()">Calculate</button><div id="savingsResult" class="result"></div></div>
+<div class="card"><h3>ROI Calculator</h3><input id="investment" type="number" placeholder="Initial Investment"><input id="finalValue" type="number" placeholder="Final Value"><button onclick="roiCalc()">Calculate</button><div id="roiResult" class="result"></div></div>
+</div>
+<section class="about"><h2>About FinanceCalcHub</h2><p>FinanceCalcHub provides free online financial calculators for loans, investments, savings goals and ROI calculations.</p></section>
+<footer><p>© 2026 FinanceCalcHub. All Rights Reserved.</p></footer>
+<script>
+function loanCalc(){let P=parseFloat(document.getElementById('loanAmount').value),r=parseFloat(document.getElementById('loanRate').value)/100/12,n=parseFloat(document.getElementById('loanYears').value)*12;if(!P||!r||!n){loanResult.innerHTML='Enter all values';return;}let m=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);loanResult.innerHTML='Monthly Payment: $'+m.toFixed(2);}
+function compoundCalc(){let p=parseFloat(principal.value),r=parseFloat(rate.value)/100,t=parseFloat(years.value);if(!p||!r||!t){compoundResult.innerHTML='Enter all values';return;}compoundResult.innerHTML='Future Value: $'+(p*Math.pow(1+r,t)).toFixed(2);}
+function savingsCalc(){let g=parseFloat(goal.value),m=parseFloat(monthly.value);if(!g||!m){savingsResult.innerHTML='Enter all values';return;}savingsResult.innerHTML='Approx. '+Math.ceil(g/m)+' months needed';}
+function roiCalc(){let i=parseFloat(investment.value),f=parseFloat(finalValue.value);if(!i||!f){roiResult.innerHTML='Enter all values';return;}roiResult.innerHTML='ROI: '+(((f-i)/i)*100).toFixed(2)+'%';}
+</script>
+</body></html>
